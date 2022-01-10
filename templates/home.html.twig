@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+
+<style type="text/css">
+#map { 
+    height: 400px;
+    width: 400px;
+ }
+</style>
+{% endblock %}
+{% block body %}
+        
+<title>Carte des luttes</title>
+    <div id="map">
+	    
+	</div>
+{% endblock %}
+ {% block javascripts %}
+     {{ parent() }}
+     {{ encore_entry_script_tags('openstreetmap') }}
+ {% endblock %}
+
+
+
+

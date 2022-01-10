@@ -3,17 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta charset="utf-8" />
+		<meta name="robots" content="noindex">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" 
+			integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_link_tags('styleApp') }}
+             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="   crossorigin=""/>
         {% endblock %}
     </head>
+
     <body>
-        {% block body %}{% endblock %}
+        <main class="min-vh-100">
+            <header id="header">
+                {% include "_navbar.html.twig" %}
+            </header>
+            <div id="loader" role="status">
+                <div class="d-flex flex-column align-items-center text-warning">
+                    <span class="fas fa-circle-notch"></span>
+                    <span class="small" data-value="Chargement...">Chargement...</span>
+                </div>
+		    </div>
+
+            <div class="z-index-9999 fixed-bottom">
+				<div id="js-notif-container" class="container py-0 d-none"></div>
+			</div>
+            {% block body %}{% endblock %}
+        </main>
+
+        {% block javascripts %}
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>
